@@ -214,8 +214,6 @@ void handleSlider(SLIDER *slider, int menuResult)
 
 void removeSliderExcess(int excess, int length, int offsetY, int w, int h)
 {
-    setColor(BLACK, RED);
-
     gotoXY(w/2-length/2-excess, h/2+offsetY);
 
     for(int i = 0; i < excess; i++)
@@ -229,6 +227,4 @@ void removeSliderExcess(int excess, int length, int offsetY, int w, int h)
     {
         printf(" ");
     }
-
-    resetColor();
 }

@@ -22,9 +22,12 @@ int calculateXp()
 void skills(int w, int h)
 {
     int selectedItem = 0;
-    int skillPoints = player.level - (health.VALUE + attack.VALUE + defence.VALUE + speed.VALUE + manaRegeneration.VALUE + manaCost.VALUE);
+    int skillPoints;
 
+    int result;
     char buffer[30];
+
+    SLIDER *sliderPointer;
 
     system("cls");
 
@@ -38,6 +41,7 @@ void skills(int w, int h)
         sprintf(buffer, "XP %d/%d", player.xp, calculateXp());
         printCenterText(buffer, w, h, 0, -5);
 
+        skillPoints = player.level - (health.VALUE + attack.VALUE + defence.VALUE + speed.VALUE + manaRegeneration.VALUE + manaCost.VALUE);
         sprintf(buffer, "Skill Points: %d", skillPoints);
         printCenterText(buffer, w, h, 0, -3);
 
@@ -62,7 +66,8 @@ void skills(int w, int h)
 
         printCenterMenu(6, selectedItem, "Back", w, h, 0, 6);
 
-        if(menuInput(&selectedItem, 7) == 1)
+        result = menuInput(&selectedItem, 7);
+        if(result)
         {
             if(selectedItem == 6)
             {
@@ -70,7 +75,44 @@ void skills(int w, int h)
                 return;
             }
 
+            if((result == RIGHT || result == 1) && skillPoints-1 == -1)
+            {
+                continue;
+            }
 
+            switch(selectedItem)
+            {
+                case 0:
+                    sliderPointer = &health;
+                    sprintf(buffer, "Health: %d", manaRegeneration.VALUE);
+                    break;
+                case 1:
+                    sliderPointer = &attack;
+                    sprintf(buffer, "Attack: %d", manaRegeneration.VALUE);
+                    break;
+                case 2:
+                    sliderPointer = &defence;
+                    sprintf(buffer, "Defence: %d", manaRegeneration.VALUE);
+                    break;
+                case 3:
+                    sliderPointer = &speed;
+                    sprintf(buffer, "Speed: %d", manaRegeneration.VALUE);
+                    break;
+                case 4:
+                    sliderPointer = &manaRegeneration;
+                    sprintf(buffer, "Mana Regeneration: %d", manaRegeneration.VALUE);
+                    break;
+                case 5:
+                    sliderPointer = &manaCost;
+                    sprintf(buffer, "Mana Cost: %d", manaCost.VALUE);
+                    break;
+            }
+
+            handleSlider(sliderPointer, result);
+            removeSliderExcess(1, strlen(buffer) + 4, selectedItem - 1, w, h);
+
+            sprintf(buffer, "Skill Points: %d", skillPoints);
+            removeSliderExcess(1, strlen(buffer), -3, w, h);
         }
     }
 }
