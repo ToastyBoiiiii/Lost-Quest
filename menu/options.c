@@ -62,13 +62,13 @@ void audioOptions(int w, int h)
                 handleSlider(&musicAudio, result);
 
                 sprintf(buffer, "Music: %d%%", musicAudio.VALUE);
-                removeSliderExcess(1, strlen(buffer) + 4, 2, w, h);
+                removeSliderExcess(1, strlen(buffer) + 4, 3, w, h);
             } else if(selectedItem == 2) // Sound Audio
             {
                 handleSlider(&soundAudio, result);
 
                 sprintf(buffer, "Sound: %d%%", soundAudio.VALUE);
-                removeSliderExcess(1, strlen(buffer) + 4, 2, w, h);
+                removeSliderExcess(1, strlen(buffer) + 4, 4, w, h);
             } else if(result == 1) // Back
             {
                 system("cls");
