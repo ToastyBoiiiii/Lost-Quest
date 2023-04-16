@@ -2,8 +2,11 @@
 #include <windows.h>
 #include <conio.h>
 
+#include "audio.h"
 #include "windowsFunctions.h"
 #include "utils.h"
+
+#include "../menu/options.h"
 
 boolean randomChance(int chance, int max_num)
 {
@@ -89,6 +92,8 @@ int menuInput2(int *selectedItem, int menuLength, int *keyCode)
 {
     if(kbhit())
     {
+        playAudioFile("click.wav", (int)((float)soundAudio.VALUE / 100 * (float)generalAudio.VALUE));
+
         int key = getch();
 
         if(keyCode != NULL)

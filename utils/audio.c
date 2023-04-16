@@ -1,10 +1,15 @@
+#include <string.h>
 #include <windows.h>
 #include <mmsystem.h>
 
 #include "audio.h"
 
-void playAudioFile(const char* fileName, int volume)
+void playAudioFile(const char* rawFileName, int volume)
 {
+    char fileName[20];
+    strncpy(fileName, "../sound/", 20);
+    strncat(fileName, rawFileName, 20);
+
     // Play Sound
     PlaySound(TEXT(fileName), NULL, SND_ASYNC);
 
