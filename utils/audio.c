@@ -7,7 +7,7 @@
 void playAudioFile(const char* rawFileName, int volume)
 {
     char fileName[20];
-    strncpy(fileName, "../sound/", 20);
+    strncpy(fileName, "data/sound/", 20);
     strncat(fileName, rawFileName, 20);
 
     // Play Sound

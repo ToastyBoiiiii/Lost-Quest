@@ -10,9 +10,9 @@ monster bossMonsterList[BOSS_MONSTER_COUNT];
 
 void initMonsters()
 {
-    FILE *monsterFp = fopen("../data/monsterList.data", "rb");
-    FILE *hardMonsterFp = fopen("../data/hardMonsterList.data", "rb");
-    FILE *bossMonsterFp = fopen("../data/bossMonsterList.data", "rb");
+    FILE *monsterFp = fopen("data/monsterList.data", "rb");
+    FILE *hardMonsterFp = fopen("data/hardMonsterList.data", "rb");
+    FILE *bossMonsterFp = fopen("data/bossMonsterList.data", "rb");
 
     if(monsterFp == NULL || hardMonsterFp == NULL || bossMonsterFp == NULL)
     {

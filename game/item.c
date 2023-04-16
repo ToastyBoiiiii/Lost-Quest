@@ -8,7 +8,7 @@ item itemList[ITEM_COUNT];
 
 void initItems()
 {
-    FILE *itemFp = fopen("../data/itemList.data", "rb");
+    FILE *itemFp = fopen("data/itemList.data", "rb");
 
     if(itemFp == NULL)
     {
