@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <time.h>
 
+#include "utils/settings.h"
 #include "utils/windowsFunctions.h"
 
 #include "game/player.h"
@@ -9,6 +10,7 @@
 #include "game/item.h"
 #include "game/monster.h"
 
+#include "menu/options.h"
 #include "menu/titlescreen.h"
 
 void init()
@@ -29,6 +31,13 @@ void init()
     player.inventory[9] = generateRandomItem();
 
     generateDungeon();
+
+    int data[SAVE_AMOUNT];
+    loadSettings(data);
+
+    generalAudio.VALUE = data[0];
+    musicAudio.VALUE = data[1];
+    soundAudio.VALUE = data[2];
 }
 
 void close()
@@ -36,6 +45,9 @@ void close()
     system("cls");
     EnableMaximizeButton();
     showCursor();
+
+    int data[SAVE_AMOUNT] = {generalAudio.VALUE, musicAudio.VALUE, soundAudio.VALUE};
+    saveSettings(data);
 }
 
 int main()
