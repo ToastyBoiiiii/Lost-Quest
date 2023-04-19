@@ -14,13 +14,13 @@ typedef struct
     int room_y;
 
     float health;
-    float max_health;
+    int max_health;
     float mana;
-    float max_mana;
+    int max_mana;
     int manaRegeneration;
 
-    int attack;
-    int defence;
+    float attack;
+    float defence;
     int speed;
 
     char has_key;

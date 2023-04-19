@@ -46,22 +46,22 @@ void skills(int w, int h)
         printCenterText(buffer, w, h, 0, -3);
 
 
-        sprintf(buffer, "Health: %d", health.VALUE);
+        sprintf(buffer, "Health(%d): %d", health.VALUE, player.max_health);
         printCenterMenu(0, selectedItem, buffer, w, h, 0, -1);
 
-        sprintf(buffer, "Attack: %d", attack.VALUE);
+        sprintf(buffer, "Attack(%d): +%.2f%%", attack.VALUE, player.attack);
         printCenterMenu(1, selectedItem, buffer, w, h, 0, 0);
 
-        sprintf(buffer, "Defence: %d", defence.VALUE);
+        sprintf(buffer, "Defence(%d): -%.2f%% DMG", defence.VALUE, player.defence);
         printCenterMenu(2, selectedItem, buffer, w, h, 0, 1);
 
-        sprintf(buffer, "Speed: %d", speed.VALUE);
+        sprintf(buffer, "Speed(%d): %d", speed.VALUE, player.speed);
         printCenterMenu(3, selectedItem, buffer, w, h, 0, 2);
 
-        sprintf(buffer, "Mana Regeneration: %d", manaRegeneration.VALUE);
+        sprintf(buffer, "Mana Regeneration(%d): %d", manaRegeneration.VALUE, player.manaRegeneration);
         printCenterMenu(4, selectedItem, buffer, w, h, 0, 3);
 
-        sprintf(buffer, "Mana Cost: %d", mana.VALUE);
+        sprintf(buffer, "Mana(%d): %d", mana.VALUE, player.max_mana);
         printCenterMenu(5, selectedItem, buffer, w, h, 0, 4);
 
         printCenterMenu(6, selectedItem, "Back", w, h, 0, 6);
@@ -84,27 +84,27 @@ void skills(int w, int h)
             {
                 case 0:
                     sliderPointer = &health;
-                    sprintf(buffer, "Health: %d", manaRegeneration.VALUE);
+                    sprintf(buffer, "Health(%d): %d", health.VALUE, player.max_health);
                     break;
                 case 1:
                     sliderPointer = &attack;
-                    sprintf(buffer, "Attack: %d", manaRegeneration.VALUE);
+                    sprintf(buffer, "Attack(%d): +%.2f%%", attack.VALUE, player.attack);
                     break;
                 case 2:
                     sliderPointer = &defence;
-                    sprintf(buffer, "Defence: %d", manaRegeneration.VALUE);
+                    sprintf(buffer, "Defence(%d): -%.2f%% DMG", defence.VALUE, player.defence);
                     break;
                 case 3:
                     sliderPointer = &speed;
-                    sprintf(buffer, "Speed: %d", manaRegeneration.VALUE);
+                    sprintf(buffer, "Speed(%d): %d", speed.VALUE, player.speed);
                     break;
                 case 4:
                     sliderPointer = &manaRegeneration;
-                    sprintf(buffer, "Mana Regeneration: %d", manaRegeneration.VALUE);
+                    sprintf(buffer, "Mana Regeneration(%d): %d", manaRegeneration.VALUE, player.manaRegeneration);
                     break;
                 case 5:
                     sliderPointer = &mana;
-                    sprintf(buffer, "Mana Cost: %d", mana.VALUE);
+                    sprintf(buffer, "Mana(%d): %d", mana.VALUE, player.max_mana);
                     break;
             }
 
