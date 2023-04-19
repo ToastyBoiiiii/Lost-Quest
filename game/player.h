@@ -5,6 +5,9 @@
 
 #define MAX_LEVEL 30
 
+#define START_HEALTH 100
+#define START_MANA 100
+
 typedef struct
 {
     int room_x;
@@ -14,6 +17,11 @@ typedef struct
     float max_health;
     float mana;
     float max_mana;
+    int manaRegeneration;
+
+    int attack;
+    int defence;
+    int speed;
 
     char has_key;
 
@@ -22,18 +30,12 @@ typedef struct
     int level;
     int xp;
 
-    int health_skill;
-    int attack_skill;
-    int defence_skill;
-    int speed_skill;
-    int mana_skill;
-    int mana_cost_skill;
-
     item inventory[10];
 } Player;
 
 extern Player player;
 
 void initPlayer();
+void updatePlayer();
 
 #endif //LOSTQUEST_PLAYER_H

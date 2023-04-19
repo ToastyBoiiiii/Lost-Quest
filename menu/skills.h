@@ -6,7 +6,7 @@ extern SLIDER attack;
 extern SLIDER defence;
 extern SLIDER speed;
 extern SLIDER manaRegeneration;
-extern SLIDER manaCost;
+extern SLIDER mana;
 
 int calculateXp();
 void skills(int w, int h);

@@ -12,7 +12,7 @@ SLIDER attack = {0, 0, MAX_LEVEL, 1};
 SLIDER defence = {0, 0, MAX_LEVEL, 1};
 SLIDER speed = {0, 0, MAX_LEVEL, 1};
 SLIDER manaRegeneration = {0, 0, MAX_LEVEL, 1};
-SLIDER manaCost = {0, 0, MAX_LEVEL, 1};
+SLIDER mana = {0, 0, MAX_LEVEL, 1};
 
 int calculateXp()
 {
@@ -41,7 +41,7 @@ void skills(int w, int h)
         sprintf(buffer, "XP %d/%d", player.xp, calculateXp());
         printCenterText(buffer, w, h, 0, -5);
 
-        skillPoints = player.level - (health.VALUE + attack.VALUE + defence.VALUE + speed.VALUE + manaRegeneration.VALUE + manaCost.VALUE);
+        skillPoints = player.level - (health.VALUE + attack.VALUE + defence.VALUE + speed.VALUE + manaRegeneration.VALUE + mana.VALUE) + 2;
         sprintf(buffer, "Skill Points: %d", skillPoints);
         printCenterText(buffer, w, h, 0, -3);
 
@@ -61,7 +61,7 @@ void skills(int w, int h)
         sprintf(buffer, "Mana Regeneration: %d", manaRegeneration.VALUE);
         printCenterMenu(4, selectedItem, buffer, w, h, 0, 3);
 
-        sprintf(buffer, "Mana Cost: %d", manaCost.VALUE);
+        sprintf(buffer, "Mana Cost: %d", mana.VALUE);
         printCenterMenu(5, selectedItem, buffer, w, h, 0, 4);
 
         printCenterMenu(6, selectedItem, "Back", w, h, 0, 6);
@@ -103,8 +103,8 @@ void skills(int w, int h)
                     sprintf(buffer, "Mana Regeneration: %d", manaRegeneration.VALUE);
                     break;
                 case 5:
-                    sliderPointer = &manaCost;
-                    sprintf(buffer, "Mana Cost: %d", manaCost.VALUE);
+                    sliderPointer = &mana;
+                    sprintf(buffer, "Mana Cost: %d", mana.VALUE);
                     break;
             }
 
@@ -113,6 +113,8 @@ void skills(int w, int h)
 
             sprintf(buffer, "Skill Points: %d", skillPoints);
             removeSliderExcess(1, strlen(buffer), -3, w, h);
+
+            updatePlayer();
         }
     }
 }
