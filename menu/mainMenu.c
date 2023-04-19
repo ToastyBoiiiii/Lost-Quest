@@ -8,6 +8,8 @@
 #include "inventory.h"
 #include "skills.h"
 
+#include "../game/player.h"
+
 void mainMenu(int w, int h)
 {
     int selectedItem = 0;
@@ -21,6 +23,34 @@ void mainMenu(int w, int h)
         printCenterMenu(0, selectedItem, "Move", w, h, 0, -1);
         printCenterMenu(1, selectedItem, "Inventory", w, h, 0, 0);
         printCenterMenu(2, selectedItem, "Skills", w, h, 0, 1);
+
+        gotoXY(2, 1);
+        printf("Player - Level %d(%d/%d Xp)\n\n", player.level, player.xp, calculateXp());
+        printf("  Health: %c", 186);
+        for(int i = 0; i < 10; i++)
+        {
+            if(player.health / player.max_health * 10 > i)
+                setColor(BLACK, DARK_RED);
+            else
+                resetColor();
+
+            printf(" ");
+        }
+        resetColor();
+        printf("%c %3.0f/%3.0f Hp\n", 186, player.health, player.max_health);
+
+        printf("  Mana:   %c", 186);
+        for(int i = 0; i < 10; i++)
+        {
+            if(player.mana / player.max_mana * 10 > i)
+                setColor(BLACK, DARK_CYAN);
+            else
+                resetColor();
+
+            printf(" ");
+        }
+        resetColor();
+        printf("%c %3.0f/%3.0f Mp\n", 186, player.mana, player.max_mana);
 
         if(menuInput(&selectedItem, 3) == 1)
         {
