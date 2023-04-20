@@ -43,7 +43,7 @@ void mainMenu(int w, int h)
             printf(" ");
         }
         resetColor();
-        printf("%c %3.0f/%3.0f Hp\n", 186, player.health, player.max_health);
+        printf("%c %3.0f/%3d HP\n", 186, player.health, player.max_health);
 
         printf("  Mana:   %c", 186);
         for(int i = 0; i < 10; i++)
@@ -56,7 +56,7 @@ void mainMenu(int w, int h)
             printf(" ");
         }
         resetColor();
-        printf("%c %3.0f/%3.0f Mp\n", 186, player.mana, player.max_mana);
+        printf("%c %3.0f/%3d MP\n", 186, player.mana, player.max_mana);
 
         if(menuInput(&selectedItem, 3) == 1)
         {

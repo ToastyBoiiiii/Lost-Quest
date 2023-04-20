@@ -46,7 +46,7 @@ void skills(int w, int h)
         printCenterText(buffer, w, h, 0, -3);
 
 
-        sprintf(buffer, "Health(%d): %d", health.VALUE, player.max_health);
+        sprintf(buffer, "Health(%d): %d HP", health.VALUE, player.max_health);
         printCenterMenu(0, selectedItem, buffer, w, h, 0, -1);
 
         sprintf(buffer, "Attack(%d): +%.2f%%", attack.VALUE, player.attack);
@@ -61,7 +61,7 @@ void skills(int w, int h)
         sprintf(buffer, "Mana Regeneration(%d): %d", manaRegeneration.VALUE, player.manaRegeneration);
         printCenterMenu(4, selectedItem, buffer, w, h, 0, 3);
 
-        sprintf(buffer, "Mana(%d): %d", mana.VALUE, player.max_mana);
+        sprintf(buffer, "Mana(%d): %d MP", mana.VALUE, player.max_mana);
         printCenterMenu(5, selectedItem, buffer, w, h, 0, 4);
 
         printCenterMenu(6, selectedItem, "Back", w, h, 0, 6);
@@ -84,7 +84,7 @@ void skills(int w, int h)
             {
                 case 0:
                     sliderPointer = &health;
-                    sprintf(buffer, "Health(%d): %d", health.VALUE, player.max_health);
+                    sprintf(buffer, "Health(%d): %d HP", health.VALUE, player.max_health);
                     break;
                 case 1:
                     sliderPointer = &attack;
@@ -104,7 +104,7 @@ void skills(int w, int h)
                     break;
                 case 5:
                     sliderPointer = &mana;
-                    sprintf(buffer, "Mana(%d): %d", mana.VALUE, player.max_mana);
+                    sprintf(buffer, "Mana(%d): %d MP", mana.VALUE, player.max_mana);
                     break;
             }
 
