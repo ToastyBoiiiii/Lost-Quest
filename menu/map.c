@@ -56,57 +56,113 @@ void map(int w, int h)
         {
             if(dungeon[x][y].visited || (y-1 >= 0 && dungeon[x][y-1].visited && dungeon[x][y].north_door) || (x+1 < DUNGEON_WIDTH && dungeon[x+1][y].visited && dungeon[x][y].east_door) || (y+1 < DUNGEON_HEIGHT && dungeon[x][y+1].visited && dungeon[x][y].south_door) || (x-1 >= 0 && dungeon[x-1][y].visited && dungeon[x][y].west_door))
             {
-                // Top Column
-                gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3);
-
-                printf("%c%c", 219, 223);
-
-                if(dungeon[x][y].north_door)
+                if(dungeon[x][y].contains_monster) // Small Corridor
                 {
-                    printf("%c%c", 32, 32);
-                } else
+                    // Top Column
+                    gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3);
+
+                    printf("%c%c", 219, 219);
+
+                    if(dungeon[x][y].north_door)
+                    {
+                        printf("%c%c", 32, 32);
+                    } else
+                    {
+                        printf("%c%c", 219, 219);
+                    }
+
+                    printf("%c%c", 219, 219);
+
+                    // Middle Column
+                    gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3+1);
+
+                    printf("%c%c", (dungeon[x][y].west_door)?(32):(219), (dungeon[x][y].west_door)?(32):(219));
+
+                    if(dungeon[x][y].is_exit)
+                    {
+                        setColor(BLACK, DARK_RED);
+                    } else if(dungeon[x][y].has_key)
+                    {
+                        setColor(BLACK, DARK_YELLOW);
+                    } else if(x == player.room_x && y == player.room_y)
+                    {
+                        setColor(BLACK, DARK_PINK);
+                    }
+
+                    printf("  ");
+
+                    resetColor();
+
+                    printf("%c%c", (dungeon[x][y].east_door)?(32):(219), (dungeon[x][y].east_door)?(32):(219));
+
+                    // Bottom Column
+                    gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3+2);
+
+                    printf("%c%c", 219, 219);
+
+                    if(dungeon[x][y].south_door)
+                    {
+                        printf("%c%c", 32, 32);
+                    } else
+                    {
+                        printf("%c%c", 219, 219);
+                    }
+
+                    printf("%c%c", 219, 219);
+                } else // Big Room
                 {
-                    printf("%c%c", 223, 223);
+                    // Top Column
+                    gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3);
+
+                    printf("%c%c", 219, 223);
+
+                    if(dungeon[x][y].north_door)
+                    {
+                        printf("%c%c", 32, 32);
+                    } else
+                    {
+                        printf("%c%c", 223, 223);
+                    }
+
+                    printf("%c%c", 223, 219);
+
+                    // Middle Column
+                    gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3+1);
+
+                    printf("%c ", (dungeon[x][y].west_door)?(32):(219));
+
+                    if(dungeon[x][y].is_exit)
+                    {
+                        setColor(BLACK, DARK_RED);
+                    } else if(dungeon[x][y].has_key)
+                    {
+                        setColor(BLACK, DARK_YELLOW);
+                    } else if(x == player.room_x && y == player.room_y)
+                    {
+                        setColor(BLACK, DARK_PINK);
+                    }
+
+                    printf("  ");
+
+                    resetColor();
+
+                    printf(" %c", (dungeon[x][y].east_door)?(32):(219));
+
+                    // Bottom Column
+                    gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3+2);
+
+                    printf("%c%c", 219, 220);
+
+                    if(dungeon[x][y].south_door)
+                    {
+                        printf("%c%c", 32, 32);
+                    } else
+                    {
+                        printf("%c%c", 220, 220);
+                    }
+
+                    printf("%c%c", 220, 219);
                 }
-
-                printf("%c%c", 223, 219);
-
-                // Middle Column
-                gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3+1);
-
-                printf("%c ", (dungeon[x][y].west_door)?(32):(219));
-
-                if(dungeon[x][y].is_exit)
-                {
-                    setColor(BLACK, DARK_RED);
-                } else if(dungeon[x][y].has_key)
-                {
-                    setColor(BLACK, DARK_YELLOW);
-                } else if(x == player.room_x && y == player.room_y)
-                {
-                    setColor(BLACK, DARK_PINK);
-                }
-
-                printf("  ");
-
-                resetColor();
-
-                printf(" %c", (dungeon[x][y].east_door)?(32):(219));
-
-                // Bottom Column
-                gotoXY(w/2 - DUNGEON_WIDTH*6/2 + x*6, h/2 - DUNGEON_HEIGHT*3/2 + y*3+2);
-
-                printf("%c%c", 219, 220);
-
-                if(dungeon[x][y].south_door)
-                {
-                    printf("%c%c", 32, 32);
-                } else
-                {
-                    printf("%c%c", 220, 220);
-                }
-
-                printf("%c%c", 220, 219);
             }
         }
     }
