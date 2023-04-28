@@ -70,6 +70,38 @@ int findNeighbors(int x, int y, int neighbors[4][2])
     return foundNeighbors;
 }
 
+int findUnconnectedNeighbors(int x, int y, int neighbors[4][2])
+{
+    int foundNeighbors = 0;
+
+    if(validPosition(x, y-1) && !dungeon[x][y].north_door)
+    {
+        neighbors[foundNeighbors][0] = x;
+        neighbors[foundNeighbors][1] = y-1;
+        foundNeighbors++;
+    }
+    if(validPosition(x+1, y) && !dungeon[x][y].east_door)
+    {
+        neighbors[foundNeighbors][0] = x+1;
+        neighbors[foundNeighbors][1] = y;
+        foundNeighbors++;
+    }
+    if(validPosition(x, y+1) && !dungeon[x][y].south_door)
+    {
+        neighbors[foundNeighbors][0] = x;
+        neighbors[foundNeighbors][1] = y+1;
+        foundNeighbors++;
+    }
+    if(validPosition(x-1, y) && !dungeon[x][y].west_door)
+    {
+        neighbors[foundNeighbors][0] = x-1;
+        neighbors[foundNeighbors][1] = y;
+        foundNeighbors++;
+    }
+
+    return foundNeighbors;
+}
+
 void connectRooms(int room1[2], int room2[2])
 {
     int delta[2] = {room1[0] - room2[0], room1[1] - room2[1]};
@@ -182,6 +214,20 @@ void generateDungeon()
         {
             dungeon[x][y].visited = FALSE;
         }
+    }
+
+    // Add random path
+    for(int i = 0; i < min((float)DUNGEON_WIDTH * (float)DUNGEON_HEIGHT * ((float)PATH_PERCENTAGE / 100), (float)DUNGEON_WIDTH * (float)DUNGEON_HEIGHT * 0.9f); i++)
+    {
+        do
+        {
+            stack[1][0] = rand()%DUNGEON_WIDTH;
+            stack[1][1] = rand()%DUNGEON_HEIGHT;
+
+            neighborCount = findUnconnectedNeighbors(stack[1][0], stack[1][1], neighbors);
+        } while(neighborCount == 0);
+
+        connectRooms(stack[1], neighbors[rand()%neighborCount]);
     }
 
     dungeon[stack[0][0]][stack[0][1]].visited = TRUE;

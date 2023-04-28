@@ -6,6 +6,8 @@
 #define DUNGEON_WIDTH 10
 #define DUNGEON_HEIGHT 10
 
+#define PATH_PERCENTAGE 10
+
 #define LOOT_CHANCE 33
 #define MONSTER_CHANCE 45
 #define TRAP_CHANCE 20
